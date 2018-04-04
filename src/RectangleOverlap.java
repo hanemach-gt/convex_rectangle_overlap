@@ -12,6 +12,8 @@ public class RectangleOverlap {
         this.second = second;
     }
 
+
+    /* Returns a collection of at most 4 points. */
     public List<Point> getIntersectionPoints() {
 
         /* get points which are not an intersection of edges */

@@ -77,4 +77,6 @@ public class Edge {
 
     private Point getSecondPoint() { return this.secondPoint; }
 
+
+
 }

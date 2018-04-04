@@ -45,9 +45,10 @@ public class Rectangle {
 
     public static BigInteger getArea(List<Point> vertices) {
 
+        BigInteger zeroArea = BigInteger.valueOf(0);
         if (vertices.size() < 4) { // degenerate case, or no rectangle
 
-            return BigInteger.valueOf(0);
+            return zeroArea;
         }
 
         /* 2 points with the same abscissa */
@@ -72,6 +73,11 @@ public class Rectangle {
                 break;
             }
         }
+        if (p3 == null) {
+
+            /* we've got a degenerate case */
+            return zeroArea;
+        }
 
         BigInteger base = BigInteger.valueOf(Math.abs(p1.getX() - p3.getX()));
         BigInteger height = BigInteger.valueOf(Math.abs(p1.getY() - p2.getY()));
@@ -80,7 +86,7 @@ public class Rectangle {
 
     }
 
-    private static List<Point> toVertices(Rectangle rect) {
+    public static List<Point> toVertices(Rectangle rect) {
 
         ArrayList<Point> pts = new ArrayList<>();
 
@@ -111,9 +117,7 @@ public class Rectangle {
         Integer y = point.getY();
 
         return minX <= x && x <= maxX
-            && minY <= y && y <= maxY
-            && minX != maxX // exclude degenerate cases
-            && minY != maxY;
+            && minY <= y && y <= maxY;
     }
 
     private Point getFirstCorner() { return this.firstCorner; }
